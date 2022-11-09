@@ -41,8 +41,8 @@ const options = {
 
 // build the connection string
 const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = "fse_tuiter";
-const DB_PASSWORD = "m7RwBEdMZHSqPs0k";
+const DB_USERNAME = "fse_tuiter";           // change to group project mongoDB
+const DB_PASSWORD = "m7RwBEdMZHSqPs0k";     // change to group project mongoDB
 const HOST = "cluster0.3ivwj4w.mongodb.net";
 const DB_NAME = "tuiter";
 const DB_QUERY = "retryWrites=true&w=majority";
