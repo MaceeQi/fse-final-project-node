@@ -67,13 +67,14 @@ const options = {
 //options);
 // build the connection string
 const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = "fse_tuiter";
-const DB_PASSWORD = "m7RwBEdMZHSqPs0k";
-const HOST = "cluster0.3ivwj4w.mongodb.net";
+const DB_USERNAME = "restaurants";
+const DB_PASSWORD = "fseteam6";
+const HOST = "cluster0.wxmcfmp.mongodb.net";
 const DB_NAME = "tuiter";
 const DB_QUERY = "retryWrites=true&w=majority";
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
 // connect to the database
+// mongoose.connect("mongodb+srv://restaurants:fseteam6@cluster0.wxmcfmp.mongodb.net/tuiter?retryWrites=true&w=majority")'
 mongoose.connect(connectionString, options);
 function sayHello(req, res) {
     res.send('Welcome to Foundation of Software Engineering!');
