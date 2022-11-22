@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Hour from "./Hour";
 import Post from "./Post";
+import FeatureItem from "./FeatureItem";
+
 /**
  * @interface
  * @typedef {Restaurant} Restaurant Represents a restaurant object interface
