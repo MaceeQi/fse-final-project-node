@@ -1,4 +1,7 @@
+import mongoose from "mongoose";
+
 /**
+ * @interface
  * @typedef {Restaurant} Restaurant Represents a restaurant object interface
  * @property {string} name Restaurant name
  * @property {string} bannerPicture Banner picture
@@ -16,17 +19,18 @@
  * @property {FeatureItem} featured Restaurant featured items
  */
 export default interface Restaurant {
-    "name": string,
-    "bannerPicture": string,
-    "profilePicture": string,
-    "handle": string,
-    "bio": string,
-    "cuisine": string,
-    "price": string,
-    "address": string,
-    "hours": Hour[],
-    "phone": string,
-    "website": string,
-    "posts": Post[],
-    "featured": FeatureItem[]
+    _id?: mongoose.Schema.Types.ObjectId,
+    name: string,
+    bannerPicture?: string,
+    profilePicture?: string,
+    handle: string,
+    bio?: string,
+    cuisine: string,
+    price: string,
+    address: string,
+    hours?: Hour[],
+    phone?: string,
+    website?: string,
+    posts?: Post[],
+    featured?: FeatureItem[]
 }
