@@ -13,7 +13,6 @@ import mongoose from "mongoose";
  * @property {string} cuisine Restaurant cuisine type
  * @property {string} price Restaurant price range
  * @property {string} address Restaurant address
- * @property {string} hours Restaurant open hours
  * @property {string} phone Restaurant phone number
  * @property {string} website Restaurant website
  */

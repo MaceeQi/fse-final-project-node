@@ -14,12 +14,8 @@ import FeaturedItem from "./FeaturedItem";
  * @property {string} cuisine Restaurant cuisine type
  * @property {string} price Restaurant price range
  * @property {string} address Restaurant address
- * @property {string} hours Restaurant open hours
- * @property {Hour} hours Restaurant open hours
  * @property {string} phone Restaurant phone number
  * @property {string} website Restaurant website
- * @property {Post} posts Restaurant updates announcements
- * @property {FeaturedItem} featured Restaurant featured items
  */
 export default interface Restaurant {
     _id?: mongoose.Schema.Types.ObjectId,
@@ -31,9 +27,6 @@ export default interface Restaurant {
     cuisine: string,
     price: string,
     address: string,
-    // hours?: Hour[],
     phone: string,
     website?: string,
-    // posts?: Post[],
-    // featured?: FeaturedItem[]
 }
