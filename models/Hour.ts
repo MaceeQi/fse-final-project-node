@@ -1,12 +1,14 @@
+import Restaurant from "./Restaurant";
 
 /**
  * @interface
  * @typedef {Hour} Hour Represents a restaurant open hour object interface
  * @property {string} weekday Restaurant cuisine type
- * @property {string} hours Restaurant open hours
+ * @property {string} hour Restaurant open hours
+ * @property {Restaurant} restaurant Restaurant
  */
-
 export default interface Hour {
     weekday: string,
-    hours: string,
+    hour: string,
+    restaurant: Restaurant
 }

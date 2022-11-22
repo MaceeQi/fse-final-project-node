@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Hour from "./Hour";
 import Post from "./Post";
-import FeatureItem from "./FeatureItem";
+import FeaturedItem from "./FeaturedItem";
 
 /**
  * @interface
@@ -19,7 +19,7 @@ import FeatureItem from "./FeatureItem";
  * @property {string} phone Restaurant phone number
  * @property {string} website Restaurant website
  * @property {Post} posts Restaurant updates announcements
- * @property {FeatureItem} featured Restaurant featured items
+ * @property {FeaturedItem} featured Restaurant featured items
  */
 export default interface Restaurant {
     _id?: mongoose.Schema.Types.ObjectId,
@@ -31,9 +31,9 @@ export default interface Restaurant {
     cuisine: string,
     price: string,
     address: string,
-    hours?: Hour[],
-    phone?: string,
+    // hours?: Hour[],
+    phone: string,
     website?: string,
-    posts?: Post[],
-    featured?: FeatureItem[]
+    // posts?: Post[],
+    // featured?: FeaturedItem[]
 }
