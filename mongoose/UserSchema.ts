@@ -2,6 +2,7 @@
  * @file Implements mongoose schema for users
  */
 import mongoose from "mongoose";
+import User from "../models/User";
 
 /**
  * @typedef User Represents a user
@@ -10,6 +11,7 @@ import mongoose from "mongoose";
  * @property {string} firstName User's first name
  * @property {string} lastName User's last name
  * @property {string} email User's email address
+ * @property {string} type Type of user
  * @property {string} profilePhoto User's profile photo
  * @property {string} headerImage Header image in user's profile
  * @property {string} accountType User's type of account
@@ -19,12 +21,14 @@ import mongoose from "mongoose";
  * @property {Date} joined Date user created an account
  * @property {number} location User's location
 */
-const UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema<User>({
     username: {type: String, required: true},
     password: {type: String, required: true},
     firstName: String,
     lastName: String,
-    email: String,
+    email: {type: String, required: true},
+    type: {type: String, enum: ['AVERAGE', 'CRITIC', 'BUSINESS'], required: true},
+    businessId: String,
     profilePhoto: String,
     headerImage: String,
     accountType: {type: String, default: 'PERSONAL', enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL']},
