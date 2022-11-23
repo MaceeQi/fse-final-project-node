@@ -3,7 +3,6 @@
  */
 import mongoose, {Schema} from "mongoose";
 import User from "../models/User";
-import AccountType from "../models/AccountType";
 import MaritalStatus from "../models/MaritalStatus";
 
 /**
@@ -34,7 +33,6 @@ const UserSchema = new mongoose.Schema<User>({
     business: {type: Schema.Types.ObjectId, ref: "RestaurantModel"},
     profilePhoto: String,
     headerImage: String,
-    accountType: {type: String, default: AccountType.Personal, enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL']},
     maritalStatus: {type: String, default: MaritalStatus.Single, enum: ['MARRIED', 'SINGLE', 'WIDOWED']},
     biography: String,
     dateOfBirth: Date,

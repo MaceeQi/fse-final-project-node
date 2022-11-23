@@ -1,7 +1,6 @@
 /**
  * @file Declares User data type
  */
-import AccountType from "./AccountType";
 import MaritalStatus from "./MaritalStatus";
 import Location from "./Location";
 import UserType from "./UserType";
@@ -20,7 +19,6 @@ import Restaurant from "./Restaurant";
  * @property {Restaurant} business Business associated with user if type of user is Business
  * @property {string} profilePhoto User's profile photo
  * @property {string} headerImage Header image in user's profile
- * @property {AccountType} accountType User's type of account (personal, academic, professional)
  * @property {MaritalStatus} maritalStatus User's marital status (single, married, widowed)
  * @property {string} biography User's biography
  * @property {Date} dateOfBirth User's date of birth
@@ -38,7 +36,6 @@ export default interface User {
     business?: Restaurant,
     profilePhoto?: string,
     headerImage?: string,
-    accountType?: AccountType,
     maritalStatus?: MaritalStatus,
     biography?: string,
     dateOfBirth?: Date,

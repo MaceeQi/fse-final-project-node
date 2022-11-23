@@ -30,7 +30,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @file Implements mongoose schema for users
  */
 const mongoose_1 = __importStar(require("mongoose"));
-const AccountType_1 = __importDefault(require("../models/AccountType"));
 const MaritalStatus_1 = __importDefault(require("../models/MaritalStatus"));
 /**
  * @typedef User Represents a user
@@ -60,7 +59,6 @@ const UserSchema = new mongoose_1.default.Schema({
     business: { type: mongoose_1.Schema.Types.ObjectId, ref: "RestaurantModel" },
     profilePhoto: String,
     headerImage: String,
-    accountType: { type: String, default: AccountType_1.default.Personal, enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL'] },
     maritalStatus: { type: String, default: MaritalStatus_1.default.Single, enum: ['MARRIED', 'SINGLE', 'WIDOWED'] },
     biography: String,
     dateOfBirth: Date,
