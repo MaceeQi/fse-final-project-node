@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
 import Review from "../models/Review";
-// import Restaurant from "../models/Restaurant";
 
 const ReviewSchema = new mongoose.Schema<Review>({
-    review: {type: String, required: true},
-    critic: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}
-    // restaurant: {type: Restaurant, required: true}
+    review: {type: mongoose.Schema.Types.ObjectId, ref: "TuitModel", required: true},
+    restaurant: {type: mongoose.Schema.Types.ObjectId, ref: "RestaurantModel", required: true}
 }, {collection: "reviews"});
 
 export default ReviewSchema;

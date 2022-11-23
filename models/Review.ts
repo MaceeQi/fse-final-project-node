@@ -1,9 +1,9 @@
-import User from "./User";
 import Tuit from "./Tuit";
-// import Restaurant from "./Restaurant";
+import Restaurant from "./Restaurant";
+import User from "./User";
 
 export default interface Review {
     review: Tuit,
-    critic: User,
-    // restaurant: Restaurant
+    restaurant: Restaurant,
+    // critic: User
 }

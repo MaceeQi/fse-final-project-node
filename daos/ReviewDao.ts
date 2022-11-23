@@ -1,7 +1,7 @@
+import Tuit from "../models/Tuit";
 import Review from "../models/Review";
 import ReviewModel from "../mongoose/ReviewModel";
 import ReviewDaoI from "../interfaces/ReviewDaoI";
-import TuitModel from "../mongoose/TuitModel";
 
 export default class ReviewDao implements ReviewDaoI {
     private static reviewDao: ReviewDao | null = null;
@@ -29,15 +29,15 @@ export default class ReviewDao implements ReviewDaoI {
         return await ReviewModel.findById(reviewID).populate("review", "critic").exec();
     }
 
-    public async createReview(criticID: string, restaurantID: string, review: Review): Promise<Review> {
+    public async createReview(criticID: string, restaurantID: string, review: Tuit): Promise<Review> {
         return await ReviewModel.create({...review, critic: criticID, restaurant: restaurantID});
     }
 
     public async deleteReview(reviewID: string): Promise<any> {
-        return await TuitModel.deleteOne({_id: reviewID});
+        return await ReviewModel.deleteOne({_id: reviewID});
     }
 
-    public async updateReview(reviewID: string, review: Review): Promise<any> {
-        return Promise.resolve(undefined);
+    public async updateReview(reviewID: string, review: Tuit): Promise<any> {
+        return ReviewModel.updateOne({_id: reviewID, review: review});
     }
 }
