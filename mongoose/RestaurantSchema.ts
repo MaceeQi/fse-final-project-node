@@ -2,10 +2,12 @@
  * @file Implements mongoose schema for restaurants
  */
 import mongoose from "mongoose";
+import Restaurant from "../models/Restaurant";
 
 /**
  * @typedef {Restaurant} Restaurant Represents a restaurant object
  * @property {string} name Restaurant name
+ * @property {string} ownedBy Restaurant owner
  * @property {string} bannerPicture Banner picture
  * @property {string} profilePicture Avatar picture
  * @property {string} handle Restaurant account handle
@@ -16,8 +18,9 @@ import mongoose from "mongoose";
  * @property {string} phone Restaurant phone number
  * @property {string} website Restaurant website
  */
-const RestaurantSchema = new mongoose.Schema({
+const RestaurantSchema = new mongoose.Schema<Restaurant>({
     name: {type: String, required: true},
+    ownedBy: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
     bannerPicture: String,
     profilePicture: String,
     handle: {type: String, required: true},
