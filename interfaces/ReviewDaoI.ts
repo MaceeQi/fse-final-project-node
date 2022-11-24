@@ -1,6 +1,9 @@
 import Tuit from "../models/Tuit";
 import Review from "../models/Review";
 
+/**
+ * @file Declares API for Reviews related data access object methods
+ */
 export default interface ReviewDaoI {
     findAllReviews(): Promise<Review[]>;
     findAllReviewsByCritic(criticID: string): Promise<Review[]>;

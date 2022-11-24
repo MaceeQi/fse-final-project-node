@@ -1,3 +1,6 @@
+/**
+ * @file Implements mongoose model to CRUD documents in the reviews collection
+ */
 import mongoose from "mongoose";
 import ReviewSchema from "./ReviewSchema";
 
