@@ -1,7 +1,9 @@
 /**
  * @file Implements mongoose schema for users
  */
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
+import User from "../models/User";
+import MaritalStatus from "../models/MaritalStatus";
 
 /**
  * @typedef User Represents a user
@@ -10,6 +12,8 @@ import mongoose from "mongoose";
  * @property {string} firstName User's first name
  * @property {string} lastName User's last name
  * @property {string} email User's email address
+ * @property {string} type Type of user
+ * @property {Restaurant} business Reference to business if user type is business
  * @property {string} profilePhoto User's profile photo
  * @property {string} headerImage Header image in user's profile
  * @property {string} accountType User's type of account
@@ -19,16 +23,17 @@ import mongoose from "mongoose";
  * @property {Date} joined Date user created an account
  * @property {number} location User's location
 */
-const UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema<User>({
     username: {type: String, required: true},
     password: {type: String, required: true},
     firstName: String,
     lastName: String,
-    email: String,
+    email: {type: String, required: true},
+    type: {type: String, enum: ['AVERAGE', 'CRITIC', 'BUSINESS'], required: true},
+    business: {type: Schema.Types.ObjectId, ref: "RestaurantModel"},
     profilePhoto: String,
     headerImage: String,
-    accountType: {type: String, default: 'PERSONAL', enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL']},
-    maritalStatus: {type: String, default: 'SINGLE', enum: ['MARRIED', 'SINGLE', 'WIDOWED']},
+    maritalStatus: {type: String, default: MaritalStatus.Single, enum: ['MARRIED', 'SINGLE', 'WIDOWED']},
     biography: String,
     dateOfBirth: Date,
     joined: {type: Date, default: Date.now},
