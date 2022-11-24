@@ -38,6 +38,6 @@ export default class ReviewDao implements ReviewDaoI {
     }
 
     public async updateReview(reviewID: string, review: Tuit): Promise<any> {
-        return ReviewModel.updateOne({_id: reviewID, review: review});
+        return ReviewModel.updateOne({_id: reviewID}, {$set: {review: review}});
     }
 }
