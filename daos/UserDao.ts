@@ -31,62 +31,32 @@ export default class UserDao implements UserDaoI {
      * @returns Promise To be notified when the users are retrieved from
      * database
      */
-    async findAllUsers(): Promise<User[]> {
-        const userMongooseModels = await UserModel.find();
-        const userModels = userMongooseModels.map((userMongooseModel) => {
-            return new User(
-                userMongooseModel?._id.toString()??'',
-                userMongooseModel?.username??'',
-                userMongooseModel?.password??'',
-                userMongooseModel?.firstName??'',
-                userMongooseModel?.lastName??'',
-                userMongooseModel?.email??'',);
-        });
-        return userModels;
-    }
+    findAllUsers = async (): Promise<User[]> =>
+        UserModel.find().exec();
 
     /**
      * Uses UserModel to retrieve single user document from users collection
      * @param {string} uid User's primary key
      * @returns Promise To be notified when user is retrieved from the database
      */
-    async findUserById(uid: string): Promise<User> {
-        const userMongooseModel = await UserModel.findById(uid);
-        return new User(
-            userMongooseModel?._id.toString()??'',
-            userMongooseModel?.username??'',
-            userMongooseModel?.password??'',
-            userMongooseModel?.firstName??'',
-            userMongooseModel?.lastName??'',
-            userMongooseModel?.email??'',
-        );
-    }
+    findUserById = async (uid: string): Promise<User> =>
+        UserModel.findById(uid);
 
     /**
      * Inserts user instance into the database
      * @param {User} user Instance to be inserted into the database
      * @returns Promise To be notified when user is inserted into the database
      */
-    async createUser(user: User): Promise<User> {
-        const userMongooseModel = await UserModel.create(user);
-        return new User(
-            userMongooseModel?._id.toString()??'',
-            userMongooseModel?.username??'',
-            userMongooseModel?.password??'',
-            userMongooseModel?.firstName??'',
-            userMongooseModel?.lastName??'',
-            userMongooseModel?.email??'',
-        );
-    }
+    createUser = async (user: User): Promise<User> =>
+        UserModel.create(user);
 
     /**
      * Removes user from the database
      * @param {string} uid Primary key of user to be removed
      * @returns Promise To be notified when user is removed from the database
      */
-    async deleteUser(uid: string): Promise<any> {
-        return await UserModel.deleteOne({_id: uid});
-    }
+    deleteUser = async (uid: string): Promise<any> =>
+        UserModel.deleteOne({_id: uid});
 
     /**
      * Updates user with new values in database
@@ -94,25 +64,21 @@ export default class UserDao implements UserDaoI {
      * @param {any} user User object containing properties and their new values
      * @returns Promise To be notified when user is updated in the database
      */
-    async updateUser(uid: string, user: any): Promise<any> {
-        return await UserModel.updateOne({_id: uid},
-            {$set: {username: user.username, password: user.password}});
-    }
+    updateUser = async (uid: string, user: User): Promise<any> =>
+        UserModel.updateOne({_id: uid}, {$set: user});
 
     /**
      * Removes all users from the database
      * @returns Promise To be notified when all users are removed from the database
      */
-    async deleteAllUsers(): Promise<any> {
-        return await UserModel.deleteMany({});
-    }
+    deleteAllUsers = async (): Promise<any> =>
+        UserModel.deleteMany({});
 
     /**
      * Removes user from the database
      * @param {string} username Username of user to be removed
      * @returns Promise To be notified when user is removed from the database
      */
-    async deleteUsersByUsername(username: string): Promise<any> {
-        return await UserModel.deleteMany({username});
-    }
+    deleteUsersByUsername = async (username: string): Promise<any> =>
+        UserModel.deleteMany({username});
 }
