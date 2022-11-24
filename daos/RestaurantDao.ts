@@ -50,6 +50,7 @@ export default class RestaurantDao implements RestaurantDaoI {
 
     /**
      * Inserts restaurant instance into the database
+     * @param {string} uid Restaurant owner's primary key
      * @param {Restaurant} restaurant Instance to be inserted into the database
      * @returns Promise To be notified when restaurant is inserted into the database
      */
@@ -57,7 +58,35 @@ export default class RestaurantDao implements RestaurantDaoI {
         return await RestaurantModel.create({...restaurant, ownedBy: uid})
     }
 
-    // updateRestaurant (rid: string, restaurant: Restaurant): Promise<any>;
-    // deleteRestaurant (rid: string): Promise<any>;
-    // deleteRestaurantsByRestaurantName (restaurantName: string): Promise<any>;
+    /**
+     * Updates restaurant with new values in database
+     * @param {string} rid Primary key of restaurant to be modified
+     * @param {any} restaurant Restaurant object containing properties and
+     * their new values
+     * @returns Promise To be notified when restaurant is updated in the database
+     */
+    public async updateRestaurant(rid: string, restaurant: Restaurant): Promise<any> {
+        return RestaurantModel.updateOne(
+            {_id: rid}, {$set: {restaurant}});
+    }
+
+    /**
+     * Removes restaurant from the database
+     * @param {string} rid Primary key of restaurant to be removed
+     * @returns Promise To be notified when restaurant is removed from the database
+     */
+    public async deleteRestaurant(rid: string): Promise<any> {
+        return RestaurantModel.deleteOne({_id: rid});
+    }
+
+    /**
+     * Removes multiple restaurants from the database by the username.
+     * Useful for testing
+     * @param {string} restaurantName Usernames of restaurants to be deleted
+     * @returns Promise To be notified when restaurants are removed from the
+     * database
+     */
+    public async deleteRestaurantsByRestaurantName(restaurantName: string): Promise<any> {
+        return RestaurantModel.deleteMany({name: restaurantName});
+    }
 }
