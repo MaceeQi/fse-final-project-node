@@ -62,6 +62,9 @@ class UserDao {
          * @returns Promise To be notified when user is removed from the database
          */
         this.deleteUsersByUsername = (username) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.deleteMany({ username }); });
+        this.findUsersByType = (type) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.find({ type }); });
+        this.findUsersByRestaurant = (rid) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.find({ business: rid }); });
+        this.deleteUsersByRestaurant = (rid) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.deleteMany({ business: rid }); });
     }
 }
 exports.default = UserDao;
