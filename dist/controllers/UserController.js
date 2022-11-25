@@ -87,12 +87,6 @@ class UserController {
          */
         this.deleteUsersByUsername = (req, res) => UserController.userDao.deleteUsersByUsername(req.params.username)
             .then(status => res.json(status));
-        this.findUsersByType = (req, res) => UserController.userDao.findUsersByType(req.params.type)
-            .then(users => res.json(users));
-        this.findUsersByRestaurant = (req, res) => UserController.userDao.findUsersByRestaurant(req.params.rid)
-            .then(users => res.json(users));
-        this.deleteUsersByRestaurant = (req, res) => UserController.userDao.deleteUsersByRestaurant(req.params.rid)
-            .then(status => res.json(status));
     }
 }
 exports.default = UserController;
@@ -114,9 +108,6 @@ UserController.getInstance = (app) => {
         app.delete('/api/users/:userid', UserController.userController.deleteUser);
         app.delete('/api/users', UserController.userController.deleteAllUsers);
         app.delete('/api/users/username/:username/delete', UserController.userController.deleteUsersByUsername);
-        app.get('/api/users/type/:type', UserController.userController.findUsersByType);
-        app.get('/api/users/business/:rid', UserController.userController.findUsersByRestaurant);
-        app.delete('/api/users/business/:rid', UserController.userController.deleteUsersByRestaurant);
     }
     return UserController.userController;
 };
