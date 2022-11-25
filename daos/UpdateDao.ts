@@ -72,16 +72,4 @@ export default class UpdateDao implements UpdateDaoI {
     public async deleteUpdate(updateId: string): Promise<any> {
         return UpdateModel.deleteOne({_id: updateId});
     }
-
-    /**
-     * Updates update with new values in database
-     * @param {string} updateId Primary key of update to be modified
-     * @param {any} update Update object containing properties and their new values
-     * @returns Promise To be notified when update is updated in the database
-     */
-    public async updateUpdate(updateId: string, update: Update): Promise<any> {
-        return UpdateModel.updateOne(
-            {_id: updateId},
-            {$set: {update}})
-    }
 }

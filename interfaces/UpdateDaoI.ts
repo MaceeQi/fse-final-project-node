@@ -8,6 +8,5 @@ export default interface UpdateDaoI {
     findUpdatesByRestaurant (rid: string): Promise<Update[]>;
     findUpdateById (updateId: string): Promise<Update>;
     createUpdate (rid: string, update: Update): Promise<Update>;
-    updateUpdate (updateId: string, update: Update): Promise<any>;
     deleteUpdate (updateId: string): Promise<any>;
 }

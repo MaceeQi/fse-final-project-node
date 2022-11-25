@@ -72,16 +72,4 @@ export default class FeaturedItemDao implements FeaturedItemDaoI {
     public async deleteFeaturedItem(itemId: string): Promise<any> {
         return FeaturedItemModel.deleteOne({_id: itemId});
     }
-
-    /**
-     * Updates item with new values in database
-     * @param {string} itemId Primary key of item to be modified
-     * @param {any} item FeaturedItem object containing properties and their new values
-     * @returns Promise To be notified when item is updated in the database
-     */
-    public async updateFeaturedItem(itemId: string, item: any): Promise<any> {
-        return FeaturedItemModel.updateOne(
-            {_id: itemId},
-            {$set: {item}})
-    }
 }

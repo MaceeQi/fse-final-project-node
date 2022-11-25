@@ -8,6 +8,5 @@ export default interface FeaturedItemDaoI {
     findFeaturedItemsByRestaurant (rid: string): Promise<FeaturedItem[]>;
     findFeaturedItemById (itemId: string): Promise<FeaturedItem>;
     createFeaturedItem (rid: string, item: FeaturedItem): Promise<FeaturedItem>;
-    updateFeaturedItem (itemId: string, item: FeaturedItem): Promise<any>;
     deleteFeaturedItem (itemId: string): Promise<any>;
 }
