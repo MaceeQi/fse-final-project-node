@@ -79,9 +79,9 @@ export default class PostDao implements PostDaoI {
      * @param {any} post Post object containing properties and their new values
      * @returns Promise To be notified when post is updated in the database
      */
-    public async updatePost(pid: string, post: any): Promise<any> {
+    public async updatePost(pid: string, post: Post): Promise<any> {
         return PostModel.updateOne(
             {_id: pid},
-            {$set: {post: post}})
+            {$set: {post}})
     }
 }

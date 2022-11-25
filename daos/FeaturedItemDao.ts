@@ -32,7 +32,7 @@ export default class FeaturedItemDao implements FeaturedItemDaoI {
      * database
      */
     public async findAllFeaturedItems(): Promise<FeaturedItem[]> {
-        return await FeaturedItemModel.find().populate('postedBy', 'name').exec();
+        return await FeaturedItemModel.find().populate('restaurant', 'name').exec();
     }
 
     /**
@@ -41,7 +41,7 @@ export default class FeaturedItemDao implements FeaturedItemDaoI {
      * @returns Promise To be notified when item is retrieved from the database
      */
     public async findFeaturedItemById(itemId: string): Promise<FeaturedItem> {
-        return await FeaturedItemModel.findById(itemId).populate('postedBy', 'name').exec();
+        return await FeaturedItemModel.findById(itemId).populate('restaurant', 'name').exec();
     }
 
     /**
@@ -51,7 +51,7 @@ export default class FeaturedItemDao implements FeaturedItemDaoI {
      * @returns Promise To be notified when items are retrieved from the database
      */
     public async findFeaturedItemsByRestaurant(rid: string): Promise<FeaturedItem[]> {
-        return await FeaturedItemModel.find({postedBy: rid}).populate('postedBy', 'name').exec();
+        return await FeaturedItemModel.find({restaurant: rid}).populate('restaurant', 'name').exec();
     }
 
     /**
@@ -61,7 +61,7 @@ export default class FeaturedItemDao implements FeaturedItemDaoI {
      * @returns Promise To be notified when item is inserted into the database
      */
     public async createFeaturedItem(rid: string, item: FeaturedItem): Promise<FeaturedItem> {
-        return await FeaturedItemModel.create({...item, postedBy: rid});
+        return await FeaturedItemModel.create({...item, restaurant: rid});
     }
 
     /**
