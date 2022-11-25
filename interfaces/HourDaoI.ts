@@ -7,7 +7,7 @@ export default interface HourDaoI {
     findAllHours (): Promise<Hour[]>;
     findHoursByRestaurant (rid: string): Promise<Hour[]>;
     findHourById (hid: string): Promise<Hour>;
-    createHour (rid: string, tuit: Hour): Promise<Hour>;
-    updateHour (hid: string, tuit: Hour): Promise<any>;
+    createHour (rid: string, hour: Hour): Promise<Hour>;
+    updateHour (hid: string, hour: Hour): Promise<any>;
     deleteHour (hid: string): Promise<any>;
 }
