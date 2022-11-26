@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-import Hour from "./Hour";
-import Post from "./Post";
-import FeaturedItem from "./FeaturedItem";
+import User from "./User";
 
 /**
  * @interface
  * @typedef {Restaurant} Restaurant Represents a restaurant object interface
  * @property {string} name Restaurant name
+ * @property {string} ownedBy Restaurant owner
  * @property {string} bannerPicture Banner picture
  * @property {string} profilePicture Avatar picture
  * @property {string} handle Restaurant account handle
@@ -20,6 +19,7 @@ import FeaturedItem from "./FeaturedItem";
 export default interface Restaurant {
     _id?: mongoose.Schema.Types.ObjectId,
     name: string,
+    ownedBy: User,
     bannerPicture?: string,
     profilePicture?: string,
     handle: string,
