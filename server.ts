@@ -22,6 +22,8 @@ import LikeController from "./controllers/LikeController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
+import RestaurantController from "./controllers/RestaurantController";
+
 var cors = require('cors');
 const app = express();  // express is a library  that allows you to create HTTP servers
 app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
@@ -36,8 +38,7 @@ const options = {
     family: 4
 }
 //mongoose.connect('mongodb://localhost:27017/tuiter', options);   // connect to mongo compass - local tuiter database
-//mongoose.connect('mongodb+srv://fse_tuiter:m7RwBEdMZHSqPs0k@cluster0.3ivwj4w.mongodb.net/tuiter?retryWrites=true&w=majority',
-//options);
+
 
 // build the connection string
 const PROTOCOL = "mongodb+srv";
@@ -69,6 +70,7 @@ const likeController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
+const restaurantController = RestaurantController.getInstance(app);
 
 /**
  * Start a server listening at port 4000 locally

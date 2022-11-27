@@ -49,6 +49,7 @@ const LikeController_1 = __importDefault(require("./controllers/LikeController")
 const FollowController_1 = __importDefault(require("./controllers/FollowController"));
 const BookmarkController_1 = __importDefault(require("./controllers/BookmarkController"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
+const RestaurantController_1 = __importDefault(require("./controllers/RestaurantController"));
 var cors = require('cors');
 const app = (0, express_1.default)(); // express is a library  that allows you to create HTTP servers
 app.use(cors()); // cors is tech that allows you to have people outside your domain to connect safely to your server
@@ -63,8 +64,6 @@ const options = {
     family: 4
 };
 //mongoose.connect('mongodb://localhost:27017/tuiter', options);   // connect to mongo compass - local tuiter database
-//mongoose.connect('mongodb+srv://fse_tuiter:m7RwBEdMZHSqPs0k@cluster0.3ivwj4w.mongodb.net/tuiter?retryWrites=true&w=majority',
-//options);
 // build the connection string
 const PROTOCOL = "mongodb+srv";
 const DB_USERNAME = "restaurants";
@@ -90,6 +89,7 @@ const likeController = LikeController_1.default.getInstance(app);
 const followController = FollowController_1.default.getInstance(app);
 const bookmarkController = BookmarkController_1.default.getInstance(app);
 const messageController = MessageController_1.default.getInstance(app);
+const restaurantController = RestaurantController_1.default.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.

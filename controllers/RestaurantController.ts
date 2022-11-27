@@ -12,7 +12,7 @@ import RestaurantControllerI from "../interfaces/RestaurantControllerI";
  *     <li>GET /api/restaurants to retrieve all the restaurant instances</li>
  *     <li>GET /api/restaurants/:rid to retrieve a particular restaurant instance</li>
  *     <li>GET /api/users/:uid/restaurants to retrieve restaurants for a given user </li>
- *     <li>POST /api/users/:uid/restaurants to create a new restaurant instance</li>
+ *     <li>POST /api/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
  *      <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
@@ -39,7 +39,7 @@ export default class RestaurantController implements RestaurantControllerI {
 
             app.get('/api/restaurants', RestaurantController.restaurantController.findAllRestaurants);
             app.get('/api/restaurants/:rid', RestaurantController.restaurantController.findRestaurantById);
-            app.post('/api/users/:uid/restaurants', RestaurantController.restaurantController.createRestaurant);
+            app.post('/api/restaurants', RestaurantController.restaurantController.createRestaurant);
             app.put('/api/restaurants/:rid', RestaurantController.restaurantController.updateRestaurant);
             app.delete('/api/restaurants/:rid', RestaurantController.restaurantController.deleteRestaurant);
             app.delete('/api/restaurants/name/:name/delete',
@@ -56,7 +56,8 @@ export default class RestaurantController implements RestaurantControllerI {
      * body formatted as JSON arrays containing the restaurant objects
      */
     findAllRestaurants = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.findAllRestaurants().then(restaurants => res.json(restaurants));
+        RestaurantController.restaurantDao.findAllRestaurants()
+            .then(restaurants => res.json(restaurants));
 
     /**
      * Retrieves the restaurant by their primary key
@@ -66,7 +67,8 @@ export default class RestaurantController implements RestaurantControllerI {
      * body formatted as JSON containing the restaurant that matches the restaurant ID
      */
     findRestaurantById = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.findRestaurantById(req.params.rid).then(restaurant => res.json(restaurant));
+        RestaurantController.restaurantDao.findRestaurantById(req.params.rid)
+            .then(restaurant => res.json(restaurant));
 
 
     /**
@@ -80,7 +82,8 @@ export default class RestaurantController implements RestaurantControllerI {
      * database
      */
     createRestaurant = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.createRestaurant(req.params.uid, req.body).then(actualRestaurant => res.json(actualRestaurant));
+        RestaurantController.restaurantDao.createRestaurant(req.params.uid, req.body)
+            .then(actualRestaurant => res.json(actualRestaurant));
 
     /**
      * Modifies an existing restaurant instance
@@ -92,7 +95,8 @@ export default class RestaurantController implements RestaurantControllerI {
      * on whether updating a restaurant was successful or not
      */
     updateRestaurant = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.updateRestaurant(req.params.rid, req.body).then(status => res.json(status));
+        RestaurantController.restaurantDao.updateRestaurant(req.params.rid, req.body)
+            .then(status => res.json(status));
 
     /**
      * Removes a restaurant instance from the database
@@ -102,7 +106,8 @@ export default class RestaurantController implements RestaurantControllerI {
      * on whether deleting a restaurant was successful or not
      */
     deleteRestaurant = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.deleteRestaurant(req.params.rid).then(status => res.json(status));
+        RestaurantController.restaurantDao.deleteRestaurant(req.params.rid)
+            .then(status => res.json(status));
 
     /**
      * Removes a restaurant instance from the database
