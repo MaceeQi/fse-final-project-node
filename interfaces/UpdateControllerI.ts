@@ -1,5 +1,4 @@
 import {Request, Response} from "express";
-import Update from "../models/Update";
 
 /**
  * @file Declares RESTful Web service API for Updates resource

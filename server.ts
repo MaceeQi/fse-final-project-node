@@ -23,6 +23,7 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import RestaurantController from "./controllers/RestaurantController";
+import UpdateController from "./controllers/UpdateController";
 
 var cors = require('cors');
 const app = express();  // express is a library  that allows you to create HTTP servers
@@ -71,7 +72,7 @@ const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const restaurantController = RestaurantController.getInstance(app);
-
+const updateController = UpdateController.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.

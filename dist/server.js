@@ -50,6 +50,7 @@ const FollowController_1 = __importDefault(require("./controllers/FollowControll
 const BookmarkController_1 = __importDefault(require("./controllers/BookmarkController"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
 const RestaurantController_1 = __importDefault(require("./controllers/RestaurantController"));
+const UpdateController_1 = __importDefault(require("./controllers/UpdateController"));
 var cors = require('cors');
 const app = (0, express_1.default)(); // express is a library  that allows you to create HTTP servers
 app.use(cors()); // cors is tech that allows you to have people outside your domain to connect safely to your server
@@ -90,6 +91,7 @@ const followController = FollowController_1.default.getInstance(app);
 const bookmarkController = BookmarkController_1.default.getInstance(app);
 const messageController = MessageController_1.default.getInstance(app);
 const restaurantController = RestaurantController_1.default.getInstance(app);
+const updateController = UpdateController_1.default.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.
