@@ -82,6 +82,6 @@ export default class HourDao implements HourDaoI {
     public async updateHour(hid: string, hour: Hour): Promise<any> {
         return HourModel.updateOne(
             {_id: hid},
-            {$set: {hour}})
+            {$set: hour})
     }
 }

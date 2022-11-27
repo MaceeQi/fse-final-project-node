@@ -25,6 +25,7 @@ import MessageController from "./controllers/MessageController";
 import RestaurantController from "./controllers/RestaurantController";
 import UpdateController from "./controllers/UpdateController";
 import FeaturedItemController from "./controllers/FeaturedItemController";
+import HourController from "./controllers/HourController";
 
 var cors = require('cors');
 const app = express();  // express is a library  that allows you to create HTTP servers
@@ -75,6 +76,7 @@ const messageController = MessageController.getInstance(app);
 const restaurantController = RestaurantController.getInstance(app);
 const updateController = UpdateController.getInstance(app);
 const featuredItemController = FeaturedItemController.getInstance(app);
+const hourController = HourController.getInstance(app);
 
 /**
  * Start a server listening at port 4000 locally
