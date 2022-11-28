@@ -10,10 +10,10 @@ import ReviewControllerI from "../interfaces/ReviewControllerI";
  * Defines the following HTTP endpoints:
  * <ul>
  *     <li>GET /api/reviews to retrieve all the reviews instances</li>
- *     <li>GET /api/restaurant/:restaurantid/reviews to retrieve reviews for a given restaurant </li>
+ *     <li>GET /api/restaurants/:restaurantid/reviews to retrieve reviews for a given restaurant </li>
  *     <li>GET /api/users/:criticid/reviews to retrieve reviews by a given critic </li>
  *     <li>GET /api/reviews/:reviewid to retrieve a particular review instance</li>
- *     <li>POST /api/reviews/:reviewid to create a new review instance</li>
+ *     <li>POST /api/restaurants/:restaurantid/users/:criticid/reviews to create a new review instance</li>
  *     <li>PUT /api/reviews/:reviewid to modify an individual review instance </li>
  *     <li>DELETE /api/reviews/:reviewid to remove a particular review instance</li>
  * </ul>
@@ -33,10 +33,10 @@ export default class ReviewController implements ReviewControllerI {
         if (ReviewController.reviewController === null) {
             ReviewController.reviewController = new ReviewController();
             app.get("/api/reviews", ReviewController.reviewController.findAllReviews);
-            app.get("/api/restaurant/:restaurantid/reviews", ReviewController.reviewController.findAllReviewsForRestaurant);
+            app.get("/api/restaurants/:restaurantid/reviews", ReviewController.reviewController.findAllReviewsForRestaurant);
             app.get("/api/users/:criticid/reviews", ReviewController.reviewController.findAllReviewsByCritic);
             app.get("/api/reviews/:reviewid", ReviewController.reviewController.findReviewById);
-            app.post("/api/restaurant/:restaurantid/users/:criticid/reviews", ReviewController.reviewController.createReview);
+            app.post("/api/restaurants/:restaurantid/users/:criticid/reviews", ReviewController.reviewController.createReview);
             app.put("/api/reviews/:reviewid", ReviewController.reviewController.updateReview);
             app.delete("/api/reviews/:reviewid", ReviewController.reviewController.deleteReview);
         }
