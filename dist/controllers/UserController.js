@@ -15,6 +15,11 @@ const UserDao_1 = __importDefault(require("../daos/UserDao"));
  *     <li>DELETE /api/users/:userid to remove a particular user instance</li>
  *     <li>DELETE /api/users to remove all user instances </li>
  *     <li>DELETE /api/users/username/:username/delete to remove a particular user instance with given username</li>
+ *     <li>GET /api/users/type/:type to retrieve all user instances of given type</li>
+ *     <li>GET /api/users/business/:rid to retrieve all user instances associated to given
+ *     restaurant</li>
+ *     <li>DELETE /api/users/business/:rid to remove all user instances associated to given
+ *     restaurant</li>
  * </ul>
  * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
  * @property {UserController} userController Singleton controller implementing
@@ -87,6 +92,36 @@ class UserController {
          */
         this.deleteUsersByUsername = (req, res) => UserController.userDao.deleteUsersByUsername(req.params.username)
             .then(status => res.json(status));
+        /**
+         * Retrieves all users from the database of given type and returns an array of users
+         * @param {Request} req Represents request from client, including path parameter
+         * type identifying the type of users to retrieve
+         * @param {Response} res Represents response to client, including the
+         * body formatted as JSON arrays containing the user objects
+         */
+        this.findUsersByType = (req, res) => UserController.userDao.findUsersByType(req.params.type)
+            .then(users => res.json(users));
+        /**
+         * Retrieves all users from the database that are associated to given restaurant
+         * and returns an array of users
+         * @param {Request} req Represents request from client, including path parameter
+         * rid identifying the primary key of the restaurant that the users to be retrieved
+         * are associated with
+         * @param {Response} res Represents response to client, including the
+         * body formatted as JSON arrays containing the user objects
+         */
+        this.findUsersByRestaurant = (req, res) => UserController.userDao.findUsersByRestaurant(req.params.rid)
+            .then(users => res.json(users));
+        /**
+         * Removes all user instances from the database that are associated to given restaurant
+         * @param {Request} req Represents request from client, including path
+         * parameter rid identifying the restaurant that the users to be removed are
+         * associated with
+         * @param {Response} res Represents response to client, including status
+         * on whether deleting the users was successful or not
+         */
+        this.deleteUsersByRestaurant = (req, res) => UserController.userDao.deleteUsersByRestaurant(req.params.rid)
+            .then(status => res.json(status));
     }
 }
 exports.default = UserController;
@@ -108,6 +143,9 @@ UserController.getInstance = (app) => {
         app.delete('/api/users/:userid', UserController.userController.deleteUser);
         app.delete('/api/users', UserController.userController.deleteAllUsers);
         app.delete('/api/users/username/:username/delete', UserController.userController.deleteUsersByUsername);
+        app.get('/api/users/type/:type', UserController.userController.findUsersByType);
+        app.get('/api/users/business/:rid', UserController.userController.findUsersByRestaurant);
+        app.delete('/api/users/business/:rid', UserController.userController.deleteUsersByRestaurant);
     }
     return UserController.userController;
 };
