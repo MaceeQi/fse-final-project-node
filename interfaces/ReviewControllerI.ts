@@ -1,5 +1,8 @@
 import {Request, Response} from "express";
 
+/**
+ * @file Declares RESTful Web service API for Reviews resource
+ */
 export default interface ReviewControllerI {
     createReview (req: Request, res: Response): void;
     updateReview (req: Request, res: Response): void;
