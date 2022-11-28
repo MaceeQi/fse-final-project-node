@@ -16,17 +16,17 @@ const ReviewModel_1 = __importDefault(require("../mongoose/ReviewModel"));
 /**
  * @class ReviewDao Implements Data Access Object managing data storage
  * of Reviews
- * @property {ReviewDao} reviewDao Private single instance of TuitDao
+ * @property {ReviewDao} reviewDao Private single instance of ReviewDao
  */
 class ReviewDao {
     constructor() { }
     /**
      * Uses ReviewModel to retrieve all reviews from reviews collection
-     * @returns Promise To be notified when the reviews are retrieved fromdatabase
+     * @returns Promise To be notified when the reviews are retrieved from database
      */
     findAllReviews() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.find().populate("review").exec();
+            return yield ReviewModel_1.default.find().populate("critic").exec();
         });
     }
     /**
@@ -36,7 +36,7 @@ class ReviewDao {
      */
     findAllReviewsByCritic(criticID) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.find().populate("review").find({ postedBy: criticID }).exec();
+            return yield ReviewModel_1.default.find().populate("critic").find({ postedBy: criticID }).exec();
         });
     }
     /**
@@ -46,7 +46,7 @@ class ReviewDao {
      */
     findAllReviewsForRestaurant(restaurantID) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.find({ restaurant: restaurantID }).populate("review").exec();
+            return yield ReviewModel_1.default.find({ restaurant: restaurantID }).populate("critic").exec();
         });
     }
     /**
@@ -56,14 +56,14 @@ class ReviewDao {
      */
     findReviewById(reviewID) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.findById(reviewID).populate("review").exec();
+            return yield ReviewModel_1.default.findById(reviewID).populate("critic").exec();
         });
     }
     /**
      * Inserts review instance into the database
      * @param {string} criticID User posting the review's primary key
      * @param {string} restaurantID Restaurant being reviewed's primary key
-     * @param {Tuit} review Tuit by the critic reviewing the restaurant
+     * @param {Review} review Review given by the critic about the restaurant
      * @returns Promise To be notified when review is inserted into the database
      */
     createReview(criticID, restaurantID, review) {
@@ -84,12 +84,12 @@ class ReviewDao {
     /**
      * Updates review with new values in database
      * @param {string} reviewID Primary key of review to be modified
-     * @param {Tuit} review Tuit object containing the new review
+     * @param {any} review Object containing the new review
      * @returns Promise To be notified when review is updated in the database
      */
     updateReview(reviewID, review) {
         return __awaiter(this, void 0, void 0, function* () {
-            return ReviewModel_1.default.updateOne({ _id: reviewID }, { $set: { review: review } });
+            return ReviewModel_1.default.updateOne({ _id: reviewID }, { $set: { review: review.review } });
         });
     }
 }
