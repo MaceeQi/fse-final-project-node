@@ -67,7 +67,7 @@ export default class RestaurantDao implements RestaurantDaoI {
      */
     public async updateRestaurant(rid: string, restaurant: Restaurant): Promise<any> {
         return RestaurantModel.updateOne(
-            {_id: rid}, {$set: {restaurant}});
+            {_id: rid}, {$set: restaurant});
     }
 
     /**
