@@ -32,7 +32,7 @@ export default class ReviewDao implements ReviewDaoI {
      * @returns Promise To be notified when the reviews are retrieved fromdatabase
      */
     public async findAllReviews(): Promise<Review[]> {
-        return await ReviewModel.find().populate("review", "restaurant").exec();
+        return await ReviewModel.find().populate("review").exec();
     }
 
     /**
@@ -41,7 +41,7 @@ export default class ReviewDao implements ReviewDaoI {
      * @returns Promise To be notified when reviews are retrieved from the database
      */
     public async findAllReviewsByCritic(criticID: string): Promise<Review[]> {
-        return await ReviewModel.find().populate("review", "restaurant").find({postedBy: criticID}).exec();
+        return await ReviewModel.find().populate("review").find({postedBy: criticID}).exec();
     }
 
     /**
@@ -50,7 +50,7 @@ export default class ReviewDao implements ReviewDaoI {
      * @returns Promise To be notified when reviews are retrieved from the database
      */
     public async findAllReviewsForRestaurant(restaurantID: string): Promise<Review[]> {
-        return await ReviewModel.find({restaurant: restaurantID}).populate("review", "restaurant").exec();
+        return await ReviewModel.find({restaurant: restaurantID}).populate("review").exec();
     }
 
     /**
@@ -59,7 +59,7 @@ export default class ReviewDao implements ReviewDaoI {
      * @returns Promise To be notified when review is retrieved from the database
      */
     public async findReviewById(reviewID: string): Promise<Review> {
-        return await ReviewModel.findById(reviewID).populate("review", "restaurant").exec();
+        return await ReviewModel.findById(reviewID).populate("review").exec();
     }
 
     /**

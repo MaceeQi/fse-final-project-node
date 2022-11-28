@@ -12,9 +12,10 @@ export default class ReviewController implements ReviewControllerI {
             app.get("/api/reviews", ReviewController.reviewController.findAllReviews);
             app.get("/api/restaurant/:restaurantid/reviews", ReviewController.reviewController.findAllReviewsForRestaurant);
             app.get("/api/users/:criticid/reviews", ReviewController.reviewController.findAllReviewsByCritic);
+            app.get("/api/reviews/:reviewid", ReviewController.reviewController.findReviewById);
             app.post("/api/restaurant/:restaurantid/users/:criticid/reviews", ReviewController.reviewController.createReview);
-            app.put("/api/restaurant/:restaurantid/users/:criticid/reviews/:reviewid", ReviewController.reviewController.updateReview);
-            app.delete("/api/restaurant/:restaurantid/users/:criticid/reviews/:reviewid", ReviewController.reviewController.deleteReview);
+            app.put("/api/reviews/:reviewid", ReviewController.reviewController.updateReview);
+            app.delete("/api/reviews/:reviewid", ReviewController.reviewController.deleteReview);
         }
         return ReviewController.reviewController;
     }

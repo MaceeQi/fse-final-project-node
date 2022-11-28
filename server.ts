@@ -8,6 +8,7 @@
  *     <li>follows</li>
  *     <li>bookmarks</li>
  *     <li>messages</li>
+ *     <li>reviews</li>
  * </ul>
  *
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
@@ -22,6 +23,7 @@ import LikeController from "./controllers/LikeController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
+import ReviewController from "./controllers/ReviewController";
 var cors = require('cors');
 const app = express();  // express is a library  that allows you to create HTTP servers
 app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
@@ -69,6 +71,7 @@ const likeController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
+const reviewController = ReviewController.getInstance(app)
 
 /**
  * Start a server listening at port 4000 locally

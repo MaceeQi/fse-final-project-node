@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *     <li>follows</li>
  *     <li>bookmarks</li>
  *     <li>messages</li>
+ *     <li>reviews</li>
  * </ul>
  *
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
@@ -49,6 +50,7 @@ const LikeController_1 = __importDefault(require("./controllers/LikeController")
 const FollowController_1 = __importDefault(require("./controllers/FollowController"));
 const BookmarkController_1 = __importDefault(require("./controllers/BookmarkController"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
+const ReviewController_1 = __importDefault(require("./controllers/ReviewController"));
 var cors = require('cors');
 const app = (0, express_1.default)(); // express is a library  that allows you to create HTTP servers
 app.use(cors()); // cors is tech that allows you to have people outside your domain to connect safely to your server
@@ -90,6 +92,7 @@ const likeController = LikeController_1.default.getInstance(app);
 const followController = FollowController_1.default.getInstance(app);
 const bookmarkController = BookmarkController_1.default.getInstance(app);
 const messageController = MessageController_1.default.getInstance(app);
+const reviewController = ReviewController_1.default.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.
