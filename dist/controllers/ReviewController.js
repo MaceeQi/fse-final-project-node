@@ -25,7 +25,7 @@ class ReviewController {
          * Creates a new review instance
          * @param {Request} req Represents request from client, including path
          * parameter criticid identifying the primary key of the user that created
-         * the review, reviewid identifyng the primary key of the restaurant being reviewed
+         * the review, restaurantid identifying the primary key of the restaurant being reviewed
          * and body containing the JSON object for the new review to be inserted in the database
          * @param {Response} res Represents response to client, including the
          * body formatted as JSON containing the new review that was inserted in the
@@ -60,7 +60,7 @@ class ReviewController {
          * Retrieves all reviews from the database and returns an array of reviews
          * @param {Request} req Represents request from client
          * @param {Response} res Represents response to client, including the
-         * body formatted as JSON arrays containing the eviews objects
+         * body formatted as JSON arrays containing the reviews objects
          */
         this.findAllReviews = (req, res) => ReviewController.reviewDao
             .findAllReviews()
@@ -69,7 +69,7 @@ class ReviewController {
          * Retrieves all reviews from the database by a particular critic and returns
          * an array of reviews
          * @param {Request} req Represents request from client, including path
-         * parameter reviewid identifying the primary key of the critic to retrieve
+         * parameter criticid identifying the primary key of the critic to retrieve
          * all their reviews given
          * @param {Response} res Represents response to client, including the
          * body formatted as JSON arrays containing the review objects
@@ -81,7 +81,7 @@ class ReviewController {
          * Retrieves all reviews from the database for a particular restaurant and returns
          * an array of reviews
          * @param {Request} req Represents request from client, including path
-         * parameter restaurant identifying the primary key of the restaurant to retrieve
+         * parameter restaurantid identifying the primary key of the restaurant to retrieve
          * all their reviews received
          * @param {Response} res Represents response to client, including the
          * body formatted as JSON arrays containing the review objects
