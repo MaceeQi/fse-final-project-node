@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *     <li>follows</li>
  *     <li>bookmarks</li>
  *     <li>messages</li>
+ *     <li>reviews</li>
  * </ul>
  *
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
@@ -49,6 +50,7 @@ const LikeController_1 = __importDefault(require("./controllers/LikeController")
 const FollowController_1 = __importDefault(require("./controllers/FollowController"));
 const BookmarkController_1 = __importDefault(require("./controllers/BookmarkController"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
+const ReviewController_1 = __importDefault(require("./controllers/ReviewController"));
 const RestaurantController_1 = __importDefault(require("./controllers/RestaurantController"));
 const UpdateController_1 = __importDefault(require("./controllers/UpdateController"));
 const FeaturedItemController_1 = __importDefault(require("./controllers/FeaturedItemController"));
@@ -92,6 +94,7 @@ const likeController = LikeController_1.default.getInstance(app);
 const followController = FollowController_1.default.getInstance(app);
 const bookmarkController = BookmarkController_1.default.getInstance(app);
 const messageController = MessageController_1.default.getInstance(app);
+const reviewController = ReviewController_1.default.getInstance(app);
 const restaurantController = RestaurantController_1.default.getInstance(app);
 const updateController = UpdateController_1.default.getInstance(app);
 const featuredItemController = FeaturedItemController_1.default.getInstance(app);
