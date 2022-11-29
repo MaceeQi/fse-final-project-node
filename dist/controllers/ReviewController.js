@@ -38,8 +38,8 @@ class ReviewController {
          * Modifies an existing review instance
          * @param {Request} req Represents request from client, including path
          * parameter reviewid identifying the primary key of the review to be modified
-         * and body containing the JSON object for the new tuit for the review
-         * to be updated in the database
+         * and body containing the JSON object for the new review for the review
+         * to be updated to in the database
          * @param {Response} res Represents response to client, including status
          * on whether updating a review was successful or not
          */

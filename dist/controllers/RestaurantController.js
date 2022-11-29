@@ -10,7 +10,6 @@ const RestaurantDao_1 = __importDefault(require("../daos/RestaurantDao"));
  * <ul>
  *     <li>GET /api/restaurants to retrieve all the restaurant instances</li>
  *     <li>GET /api/restaurants/:rid to retrieve a particular restaurant instance</li>
- *     <li>GET /api/users/:uid/restaurants to retrieve restaurants for a given user </li>
  *     <li>POST /api/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
