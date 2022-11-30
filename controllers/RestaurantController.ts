@@ -11,7 +11,7 @@ import RestaurantControllerI from "../interfaces/RestaurantControllerI";
  * <ul>
  *     <li>GET /api/restaurants to retrieve all the restaurant instances</li>
  *     <li>GET /api/restaurants/:rid to retrieve a particular restaurant instance</li>
- *     <li>POST /api/restaurants to create a new restaurant instance</li>
+ *     <li>POST /api/users/:uid/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
  *      <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
@@ -38,7 +38,7 @@ export default class RestaurantController implements RestaurantControllerI {
 
             app.get('/api/restaurants', RestaurantController.restaurantController.findAllRestaurants);
             app.get('/api/restaurants/:rid', RestaurantController.restaurantController.findRestaurantById);
-            app.post('/api/restaurants', RestaurantController.restaurantController.createRestaurant);
+            app.post('/api/users/:uid/restaurants', RestaurantController.restaurantController.createRestaurant);
             app.put('/api/restaurants/:rid', RestaurantController.restaurantController.updateRestaurant);
             app.delete('/api/restaurants/:rid', RestaurantController.restaurantController.deleteRestaurant);
             app.delete('/api/restaurants/name/:name/delete',
