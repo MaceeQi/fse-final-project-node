@@ -54,8 +54,8 @@ export default class RestaurantDao implements RestaurantDaoI {
      * @param {Restaurant} restaurant Instance to be inserted into the database
      * @returns Promise To be notified when restaurant is inserted into the database
      */
-    public async createRestaurant(uid: string, restaurant: Restaurant): Promise<Restaurant> {
-        return await RestaurantModel.create({...restaurant, ownedBy: uid})
+    public async createRestaurant(restaurant: Restaurant): Promise<Restaurant> {
+        return await RestaurantModel.create({...restaurant})
     }
 
     /**

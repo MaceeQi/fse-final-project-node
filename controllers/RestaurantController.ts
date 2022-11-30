@@ -38,7 +38,7 @@ export default class RestaurantController implements RestaurantControllerI {
 
             app.get('/api/restaurants', RestaurantController.restaurantController.findAllRestaurants);
             app.get('/api/restaurants/:rid', RestaurantController.restaurantController.findRestaurantById);
-            app.post('/api/users/:uid/restaurants', RestaurantController.restaurantController.createRestaurant);
+            app.post('/api/restaurants', RestaurantController.restaurantController.createRestaurant);
             app.put('/api/restaurants/:rid', RestaurantController.restaurantController.updateRestaurant);
             app.delete('/api/restaurants/:rid', RestaurantController.restaurantController.deleteRestaurant);
             app.delete('/api/restaurants/name/:name/delete',
@@ -81,7 +81,7 @@ export default class RestaurantController implements RestaurantControllerI {
      * database
      */
     createRestaurant = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.createRestaurant(req.params.uid, req.body)
+        RestaurantController.restaurantDao.createRestaurant(req.body)
             .then(actualRestaurant => res.json(actualRestaurant));
 
     /**
