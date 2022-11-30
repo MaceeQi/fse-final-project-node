@@ -16,7 +16,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const ReviewSchema = new mongoose_1.default.Schema({
     review: { type: String, required: true },
     critic: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "UserModel", required: true },
-    restaurant: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "RestaurantModel", required: true }
+    restaurant: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "RestaurantModel", required: true },
+    postedOn: { type: Date, default: Date.now }
 }, { collection: "reviews" });
 exports.default = ReviewSchema;
 //# sourceMappingURL=ReviewSchema.js.map
