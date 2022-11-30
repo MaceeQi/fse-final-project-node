@@ -20,7 +20,7 @@ import Restaurant from "../models/Restaurant";
  */
 const RestaurantSchema = new mongoose.Schema<Restaurant>({
     name: {type: String, required: true},
-    ownedBy: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+    ownedBy: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel", required: true},
     bannerPicture: String,
     profilePicture: String,
     handle: {type: String, required: true},
