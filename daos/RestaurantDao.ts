@@ -89,4 +89,15 @@ export default class RestaurantDao implements RestaurantDaoI {
     public async deleteRestaurantsByRestaurantName(restaurantName: string): Promise<any> {
         return RestaurantModel.deleteMany({name: restaurantName});
     }
+
+    /**
+     * Uses RestaurantModel to retrieve restaurant documents from
+     * restaurants collection that matches given restaurant name
+     * @param {string} restaurant Name of the restaurant
+     * @returns Promise To be notified when restaurants are retrieved from the database
+     */
+    public async findRestaurantsByName (restaurant: string): Promise<Restaurant[]> {
+        return RestaurantModel.find({name: restaurant});
+    }
+
 }
