@@ -14,7 +14,7 @@ const ReviewSchema = new mongoose.Schema<Review>({
     review: {type: String, required: true},
     critic: {type: mongoose.Schema.Types.ObjectId, ref: "UserModel", required: true},
     restaurant: {type: mongoose.Schema.Types.ObjectId, ref: "RestaurantModel", required: true},
-    postedOn: {type: Date, default: Date.now}
+    time: {type: Date, default: Date.now}
 }, {collection: "reviews"});
 
 export default ReviewSchema;

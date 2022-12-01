@@ -14,5 +14,5 @@ export default interface Review {
     review: string,
     critic: User,
     restaurant: Restaurant,
-    postedOn?: Date
+    time?: Date
 }
