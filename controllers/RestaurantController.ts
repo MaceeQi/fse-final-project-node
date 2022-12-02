@@ -1,7 +1,7 @@
 /**
  * @file Controller RESTful Web service API for restaurants resource
  */
-import {Request, Response, Express} from "express";
+import {Request, Response, Express, response} from "express";
 import RestaurantDao from "../daos/RestaurantDao";
 import RestaurantControllerI from "../interfaces/RestaurantControllerI";
 
@@ -56,7 +56,9 @@ export default class RestaurantController implements RestaurantControllerI {
      */
     findAllRestaurants = (req: Request, res: Response) =>
         RestaurantController.restaurantDao.findAllRestaurants()
-            .then(restaurants => res.json(restaurants));
+            .then(restaurants => {
+                res.json(restaurants);
+            });
 
     /**
      * Retrieves the restaurant by their primary key
@@ -67,7 +69,10 @@ export default class RestaurantController implements RestaurantControllerI {
      */
     findRestaurantById = (req: Request, res: Response) =>
         RestaurantController.restaurantDao.findRestaurantById(req.params.rid)
-            .then(restaurant => res.json(restaurant));
+            .then(restaurant => {
+                res.json(restaurant)
+                // console.log(restaurant)
+            });
 
 
     /**

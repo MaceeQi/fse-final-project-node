@@ -30,7 +30,9 @@ class RestaurantController {
          * body formatted as JSON arrays containing the restaurant objects
          */
         this.findAllRestaurants = (req, res) => RestaurantController.restaurantDao.findAllRestaurants()
-            .then(restaurants => res.json(restaurants));
+            .then(restaurants => {
+            res.json(restaurants);
+        });
         /**
          * Retrieves the restaurant by their primary key
          * @param {Request} req Represents request from client, including path
@@ -39,7 +41,10 @@ class RestaurantController {
          * body formatted as JSON containing the restaurant that matches the restaurant ID
          */
         this.findRestaurantById = (req, res) => RestaurantController.restaurantDao.findRestaurantById(req.params.rid)
-            .then(restaurant => res.json(restaurant));
+            .then(restaurant => {
+            res.json(restaurant);
+            console.log(restaurant);
+        });
         /**
          * Creates a new restaurant instance
          * @param {Request} req Represents request from client, including path

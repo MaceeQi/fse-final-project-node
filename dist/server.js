@@ -57,7 +57,14 @@ const FeaturedItemController_1 = __importDefault(require("./controllers/Featured
 const HourController_1 = __importDefault(require("./controllers/HourController"));
 var cors = require('cors');
 const app = (0, express_1.default)(); // express is a library  that allows you to create HTTP servers
-app.use(cors()); // cors is tech that allows you to have people outside your domain to connect safely to your server
+// app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
+const corsConfig = {
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsConfig));
 app.use(express_1.default.json()); // configuring our server so that it can parse json; json = format that data will be formatted as
 const options = {
     useNewUrlParser: true,
@@ -69,6 +76,7 @@ const options = {
     family: 4
 };
 //mongoose.connect('mongodb://localhost:27017/tuiter', options);   // connect to mongo compass - local tuiter database
+require('dotenv').config();
 // build the connection string
 const PROTOCOL = "mongodb+srv";
 const DB_USERNAME = "restaurants";
