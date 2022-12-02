@@ -57,7 +57,10 @@ export default class ReviewController implements ReviewControllerI {
     createReview = (req: Request, res: Response) =>
         ReviewController.reviewDao
             .createReview(req.params.criticid, req.params.restaurantid, req.body)
-            .then(review => res.json(review));
+            .then(review => {
+                res.json(review);
+                console.log(review);
+            });
 
     /**
      * Modifies an existing review instance

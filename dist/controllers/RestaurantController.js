@@ -10,7 +10,7 @@ const RestaurantDao_1 = __importDefault(require("../daos/RestaurantDao"));
  * <ul>
  *     <li>GET /api/restaurants to retrieve all the restaurant instances</li>
  *     <li>GET /api/restaurants/:rid to retrieve a particular restaurant instance</li>
- *     <li>POST /api/restaurants to create a new restaurant instance</li>
+ *     <li>POST /api/users/:uid/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
  *      <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
@@ -50,7 +50,7 @@ class RestaurantController {
          * body formatted as JSON containing the new restaurant that was inserted in the
          * database
          */
-        this.createRestaurant = (req, res) => RestaurantController.restaurantDao.createRestaurant(req.params.uid, req.body)
+        this.createRestaurant = (req, res) => RestaurantController.restaurantDao.createRestaurant(req.body)
             .then(actualRestaurant => res.json(actualRestaurant));
         /**
          * Modifies an existing restaurant instance
