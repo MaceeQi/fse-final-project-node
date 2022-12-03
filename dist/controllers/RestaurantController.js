@@ -43,7 +43,7 @@ class RestaurantController {
         this.findRestaurantById = (req, res) => RestaurantController.restaurantDao.findRestaurantById(req.params.rid)
             .then(restaurant => {
             res.json(restaurant);
-            console.log(restaurant);
+            // console.log(restaurant)
         });
         /**
          * Creates a new restaurant instance
