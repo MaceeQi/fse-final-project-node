@@ -27,7 +27,7 @@ class FeaturedItemDao {
      */
     findAllFeaturedItems() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield FeaturedItemModel_1.default.find().populate('restaurant', 'name').exec();
+            return FeaturedItemModel_1.default.find();
         });
     }
     /**
@@ -37,7 +37,7 @@ class FeaturedItemDao {
      */
     findFeaturedItemById(itemId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield FeaturedItemModel_1.default.findById(itemId).populate('restaurant', 'name').exec();
+            return FeaturedItemModel_1.default.findById(itemId);
         });
     }
     /**
@@ -48,7 +48,7 @@ class FeaturedItemDao {
      */
     findFeaturedItemsByRestaurant(rid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield FeaturedItemModel_1.default.find({ restaurant: rid }).populate('restaurant', 'name').exec();
+            return FeaturedItemModel_1.default.find({ restaurant: rid });
         });
     }
     /**

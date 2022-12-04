@@ -15,7 +15,7 @@ import FeaturedItem from "../models/FeaturedItem";
 const FeaturedItemSchema = new mongoose.Schema<FeaturedItem>({
     food: {type: String, required: true},
     price: {type: String, required: true},
-    photo: String,
+    photo: {type: String, default: "emptyFood.jpeg"},
     popular: {type: Boolean, required: true},
     restaurant: {type: Schema.Types.ObjectId, ref: "RestaurantModel"},
 }, {collection: "featured-items"});
