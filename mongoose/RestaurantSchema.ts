@@ -30,5 +30,12 @@ const RestaurantSchema = new mongoose.Schema<Restaurant>({
     address: {type: String, required: true},
     phone: {type: String, required: true},
     website: String,
+    monday: String,
+    tuesday: String,
+    wednesday: String,
+    thursday: String,
+    friday: String,
+    saturday: String,
+    sunday: String
 }, {collection: 'restaurants'});
 export default RestaurantSchema;
