@@ -33,6 +33,13 @@ const RestaurantSchema = new mongoose_1.default.Schema({
     address: { type: String, required: true },
     phone: { type: String, required: true },
     website: String,
+    monday: String,
+    tuesday: String,
+    wednesday: String,
+    thursday: String,
+    friday: String,
+    saturday: String,
+    sunday: String
 }, { collection: 'restaurants' });
 exports.default = RestaurantSchema;
 //# sourceMappingURL=RestaurantSchema.js.map
