@@ -57,7 +57,7 @@ const UserSchema = new mongoose_1.default.Schema({
     email: { type: String, required: true },
     type: { type: String, enum: ['AVERAGE', 'CRITIC', 'BUSINESS'], required: true },
     business: { type: mongoose_1.Schema.Types.ObjectId, ref: "RestaurantModel" },
-    profilePhoto: String,
+    profilePhoto: { type: String, default: "charlie.jpg" },
     headerImage: String,
     maritalStatus: { type: String, default: MaritalStatus_1.default.Single, enum: ['MARRIED', 'SINGLE', 'WIDOWED'] },
     biography: String,

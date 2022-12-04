@@ -13,5 +13,6 @@ import User from "./User";
 export default interface Review {
     review: string,
     critic: User,
-    restaurant: Restaurant
+    restaurant: Restaurant,
+    time?: Date
 }
