@@ -10,4 +10,5 @@ export default interface RestaurantControllerI {
     updateRestaurant (req: Request, res: Response): void;
     deleteRestaurant (req: Request, res: Response): void;
     deleteRestaurantsByRestaurantName (req: Request, res: Response): void;
+    findRestaurantsByName (req: Request, res: Response): void;
 }

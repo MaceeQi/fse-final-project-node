@@ -14,9 +14,11 @@ import RestaurantControllerI from "../interfaces/RestaurantControllerI";
  *     <li>POST /api/users/:uid/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
- *      <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
+ *     <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
  *      its name
- *      </li>
+ *     </li>
+ *     <li>GET /api/restaurants/name:name to retrieve particular restaurant instances
+ *     with given name</li>
  * </ul>
  * @property {RestaurantDao} restaurantDao Singleton DAO implementing restaurant CRUD operations
  * @property {RestaurantController} restaurantController Singleton controller implementing
@@ -43,6 +45,7 @@ export default class RestaurantController implements RestaurantControllerI {
             app.delete('/api/restaurants/:rid', RestaurantController.restaurantController.deleteRestaurant);
             app.delete('/api/restaurants/name/:name/delete',
                 RestaurantController.restaurantController.deleteRestaurantsByRestaurantName);
+            app.get('/api/restaurants/name/:name', RestaurantController.restaurantController.findRestaurantsByName);
         }
         return RestaurantController.restaurantController;
     }
@@ -123,4 +126,16 @@ export default class RestaurantController implements RestaurantControllerI {
     deleteRestaurantsByRestaurantName = (req: Request, res: Response) =>
         RestaurantController.restaurantDao.deleteRestaurantsByRestaurantName(req.params.name)
             .then(status => res.json(status));
+
+    /**
+     * Retrieves all restaurants from the database with given name and returns an array of restaurants
+     * @param {Request} req Represents request from client, including path
+     * parameter name identifying the name of the restaurant to be retrieved
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON array containing the restaurant objects
+     */
+    findRestaurantsByName = (req: Request, res: Response) =>
+        RestaurantController.restaurantDao.findRestaurantsByName(req.params.name)
+            .then(restaurants => res.json(restaurants));
+
 }

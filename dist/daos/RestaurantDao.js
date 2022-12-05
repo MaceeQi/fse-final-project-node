@@ -87,6 +87,17 @@ class RestaurantDao {
             return RestaurantModel_1.default.deleteMany({ name: restaurantName });
         });
     }
+    /**
+     * Uses RestaurantModel to retrieve restaurant documents from
+     * restaurants collection that matches given restaurant name
+     * @param {string} restaurant Name of the restaurant
+     * @returns Promise To be notified when restaurants are retrieved from the database
+     */
+    findRestaurantsByName(restaurant) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return RestaurantModel_1.default.find({ name: restaurant });
+        });
+    }
 }
 exports.default = RestaurantDao;
 RestaurantDao.restaurantDao = null;

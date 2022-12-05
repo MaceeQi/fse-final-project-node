@@ -10,4 +10,5 @@ export default interface RestaurantDaoI {
     updateRestaurant (rid: string, restaurant: Restaurant): Promise<any>;
     deleteRestaurant (rid: string): Promise<any>;
     deleteRestaurantsByRestaurantName (username: string): Promise<any>;
+    findRestaurantsByName (restaurant: string): Promise<Restaurant[]>;
 }
