@@ -32,7 +32,7 @@ export default class UpdateDao implements UpdateDaoI {
      * database
      */
     public async findAllUpdates(): Promise<Update[]> {
-        return await UpdateModel.find().populate('updatedBy', 'name').exec();
+        return UpdateModel.find();
     }
 
     /**
@@ -41,7 +41,7 @@ export default class UpdateDao implements UpdateDaoI {
      * @returns Promise To be notified when update is retrieved from the database
      */
     public async findUpdateById(updateId: string): Promise<Update> {
-        return await UpdateModel.findById(updateId).populate('updatedBy', 'name').exec();
+        return UpdateModel.findById(updateId);
     }
 
     /**
@@ -51,7 +51,7 @@ export default class UpdateDao implements UpdateDaoI {
      * @returns Promise To be notified when updates are retrieved from the database
      */
     public async findUpdatesByRestaurant(rid: string): Promise<Update[]> {
-        return await UpdateModel.find({updatedBy: rid}).populate('updatedBy', 'name').exec();
+        return UpdateModel.find({updatedBy: rid});
     }
 
     /**

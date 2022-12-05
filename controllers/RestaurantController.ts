@@ -1,7 +1,7 @@
 /**
  * @file Controller RESTful Web service API for restaurants resource
  */
-import {Request, Response, Express} from "express";
+import {Request, Response, Express, response} from "express";
 import RestaurantDao from "../daos/RestaurantDao";
 import RestaurantControllerI from "../interfaces/RestaurantControllerI";
 
@@ -11,7 +11,7 @@ import RestaurantControllerI from "../interfaces/RestaurantControllerI";
  * <ul>
  *     <li>GET /api/restaurants to retrieve all the restaurant instances</li>
  *     <li>GET /api/restaurants/:rid to retrieve a particular restaurant instance</li>
- *     <li>POST /api/restaurants to create a new restaurant instance</li>
+ *     <li>POST /api/users/:uid/restaurants to create a new restaurant instance</li>
  *     <li>PUT /api/restaurants/:rid to modify an individual restaurant instance </li>
  *     <li>DELETE /api/restaurants/:rid to remove a particular restaurant instance</li>
  *     <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
@@ -59,7 +59,9 @@ export default class RestaurantController implements RestaurantControllerI {
      */
     findAllRestaurants = (req: Request, res: Response) =>
         RestaurantController.restaurantDao.findAllRestaurants()
-            .then(restaurants => res.json(restaurants));
+            .then(restaurants => {
+                res.json(restaurants);
+            });
 
     /**
      * Retrieves the restaurant by their primary key
@@ -70,7 +72,10 @@ export default class RestaurantController implements RestaurantControllerI {
      */
     findRestaurantById = (req: Request, res: Response) =>
         RestaurantController.restaurantDao.findRestaurantById(req.params.rid)
-            .then(restaurant => res.json(restaurant));
+            .then(restaurant => {
+                res.json(restaurant)
+                // console.log(restaurant)
+            });
 
 
     /**
@@ -84,7 +89,7 @@ export default class RestaurantController implements RestaurantControllerI {
      * database
      */
     createRestaurant = (req: Request, res: Response) =>
-        RestaurantController.restaurantDao.createRestaurant(req.params.uid, req.body)
+        RestaurantController.restaurantDao.createRestaurant(req.body)
             .then(actualRestaurant => res.json(actualRestaurant));
 
     /**

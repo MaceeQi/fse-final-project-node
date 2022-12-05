@@ -48,9 +48,9 @@ class RestaurantDao {
      * @param {Restaurant} restaurant Instance to be inserted into the database
      * @returns Promise To be notified when restaurant is inserted into the database
      */
-    createRestaurant(uid, restaurant) {
+    createRestaurant(restaurant) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield RestaurantModel_1.default.create(Object.assign(Object.assign({}, restaurant), { ownedBy: uid }));
+            return yield RestaurantModel_1.default.create(Object.assign({}, restaurant));
         });
     }
     /**

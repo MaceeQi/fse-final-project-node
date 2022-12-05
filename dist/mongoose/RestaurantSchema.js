@@ -23,7 +23,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
  */
 const RestaurantSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
-    ownedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "UserModel" },
+    ownedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "UserModel", required: true },
     bannerPicture: String,
     profilePicture: String,
     handle: { type: String, required: true },
@@ -33,6 +33,13 @@ const RestaurantSchema = new mongoose_1.default.Schema({
     address: { type: String, required: true },
     phone: { type: String, required: true },
     website: String,
+    monday: String,
+    tuesday: String,
+    wednesday: String,
+    thursday: String,
+    friday: String,
+    saturday: String,
+    sunday: String
 }, { collection: 'restaurants' });
 exports.default = RestaurantSchema;
 //# sourceMappingURL=RestaurantSchema.js.map

@@ -38,7 +38,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const FeaturedItemSchema = new mongoose_1.default.Schema({
     food: { type: String, required: true },
     price: { type: String, required: true },
-    photo: String,
+    photo: { type: String, default: "emptyFood.jpeg" },
     popular: { type: Boolean, required: true },
     restaurant: { type: mongoose_1.Schema.Types.ObjectId, ref: "RestaurantModel" },
 }, { collection: "featured-items" });
