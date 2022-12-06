@@ -27,7 +27,7 @@ class UpdateDao {
      */
     findAllUpdates() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UpdateModel_1.default.find().populate('updatedBy', 'name').exec();
+            return UpdateModel_1.default.find();
         });
     }
     /**
@@ -37,7 +37,7 @@ class UpdateDao {
      */
     findUpdateById(updateId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UpdateModel_1.default.findById(updateId).populate('updatedBy', 'name').exec();
+            return UpdateModel_1.default.findById(updateId);
         });
     }
     /**
@@ -48,7 +48,7 @@ class UpdateDao {
      */
     findUpdatesByRestaurant(rid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UpdateModel_1.default.find({ updatedBy: rid }).populate('updatedBy', 'name').exec();
+            return UpdateModel_1.default.find({ updatedBy: rid });
         });
     }
     /**
