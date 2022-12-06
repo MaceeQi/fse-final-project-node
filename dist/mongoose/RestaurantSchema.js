@@ -24,8 +24,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const RestaurantSchema = new mongoose_1.default.Schema({
     name: { type: String, required: true },
     ownedBy: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "UserModel", required: true },
-    bannerPicture: String,
-    profilePicture: String,
+    bannerPicture: { type: String, default: "emptyBanner.jpeg" },
+    profilePicture: { type: String, default: "emptyAvatar.png" },
     handle: { type: String, required: true },
     bio: String,
     cuisine: { type: String, required: true },
