@@ -54,13 +54,11 @@ export default class ReviewController implements ReviewControllerI {
      * body formatted as JSON containing the new review that was inserted in the
      * database
      */
-    createReview = (req: Request, res: Response) =>
-        ReviewController.reviewDao
-            .createReview(req.params.criticid, req.params.restaurantid, req.body)
-            .then(review => {
-                res.json(review);
-                console.log(review);
-            });
+    createReview = async (req, res) => {
+        const actualReview = await ReviewController.reviewDao
+            .createReview(req.params.criticid, req.params.restaurantid, req.body);
+        res.json(actualReview)
+    }
 
     /**
      * Modifies an existing review instance

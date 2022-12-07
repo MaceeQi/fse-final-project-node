@@ -81,6 +81,13 @@ class UserDao {
          * @returns Promise To be notified when users are removed from the database
          */
         this.deleteUsersByRestaurant = (rid) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.deleteMany({ business: rid }); });
+        /**
+         * Uses UserModel to retrieve a user documentation from users collection by
+         * its username
+         * @returns Promise To be notified when the user is retrieved from
+         * database
+         */
+        this.findUserByUsername = (username) => __awaiter(this, void 0, void 0, function* () { return UserModel_1.default.findOne({ username }); });
     }
 }
 exports.default = UserDao;
