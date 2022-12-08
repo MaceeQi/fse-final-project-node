@@ -68,7 +68,7 @@ class ReviewDao {
      */
     createReview(criticID, restaurantID, review) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.create({ review, critic: criticID, restaurant: restaurantID, time: Date.now });
+            return yield ReviewModel_1.default.create(Object.assign(Object.assign({}, review), { critic: criticID, restaurant: restaurantID }));
         });
     }
     /**

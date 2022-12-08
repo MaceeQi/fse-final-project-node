@@ -68,8 +68,8 @@ export default class ReviewDao implements ReviewDaoI {
      * @param {Review} review Review given by the critic about the restaurant
      * @returns Promise To be notified when review is inserted into the database
      */
-    public async createReview(criticID: string, restaurantID: string, review: string): Promise<Review> {
-        return await ReviewModel.create({review, critic: criticID, restaurant: restaurantID, time: Date.now});
+    public async createReview(criticID: string, restaurantID: string, review: Review): Promise<Review> {
+        return await ReviewModel.create({...review, critic: criticID, restaurant: restaurantID});
     }
 
     /**
