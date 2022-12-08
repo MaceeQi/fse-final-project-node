@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -40,10 +31,10 @@ class ReviewController {
          * body formatted as JSON containing the new review that was inserted in the
          * database
          */
-        this.createReview = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const actualReview = yield ReviewController.reviewDao
-                .createReview(req.params.criticid, req.params.restaurantid, req.body);
-            res.json(actualReview);
+        this.createReview = (req, res) => ReviewController.reviewDao
+            .createReview(req.params.criticid, req.params.restaurantid, req.body)
+            .then(review => {
+            res.json(review);
         });
         /**
          * Modifies an existing review instance
