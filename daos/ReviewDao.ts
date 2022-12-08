@@ -40,7 +40,7 @@ export default class ReviewDao implements ReviewDaoI {
      * @returns Promise To be notified when reviews are retrieved from the database
      */
     public async findAllReviewsByCritic(criticID: string): Promise<Review[]> {
-        return await ReviewModel.find().populate("critic").find({postedBy: criticID}).exec();
+        return await ReviewModel.find({critic: criticID}).populate("critic").exec();
     }
 
     /**

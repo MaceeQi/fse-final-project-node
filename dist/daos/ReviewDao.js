@@ -36,7 +36,7 @@ class ReviewDao {
      */
     findAllReviewsByCritic(criticID) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ReviewModel_1.default.find().populate("critic").find({ postedBy: criticID }).exec();
+            return yield ReviewModel_1.default.find({ critic: criticID }).populate("critic").exec();
         });
     }
     /**
