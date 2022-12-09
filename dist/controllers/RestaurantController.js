@@ -16,8 +16,11 @@ const RestaurantDao_1 = __importDefault(require("../daos/RestaurantDao"));
  *     <li>DELETE /api/restaurants/name/:name/delete to remove a particular restaurant instance by
  *      its name
  *     </li>
- *     <li>GET /api/restaurants/name:name to retrieve particular restaurant instances
- *     with given name</li>
+ *     <li>GET /api/restaurants/name/:name to retrieve particular restaurant instances
+ *     with given name
+ *     </li>
+ *     <li>DELETE /api/restaurants/users/:uid to remove restaurant instances by owner id
+ *     </li>
  * </ul>
  * @property {RestaurantDao} restaurantDao Singleton DAO implementing restaurant CRUD operations
  * @property {RestaurantController} restaurantController Singleton controller implementing
