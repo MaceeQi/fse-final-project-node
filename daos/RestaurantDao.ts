@@ -100,4 +100,14 @@ export default class RestaurantDao implements RestaurantDaoI {
         return RestaurantModel.find({name: restaurant});
     }
 
+    /**
+     * Uses RestaurantModel to delete restaurant documents from
+     * restaurants collection that matches given owner id
+     * @param {string} owner id of the restaurant owner
+     * @returns Promise To be notified when restaurants are deleted from the database
+     */
+    public async deleteRestaurantByOwner (owner: string) {
+        return RestaurantModel.deleteMany({ownedBy: owner})
+    }
+
 }

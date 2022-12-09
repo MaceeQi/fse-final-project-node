@@ -33,7 +33,7 @@ export default class AuthenticationController {
         } else {
             const insertedUser = await AuthenticationController.userDao
                 .createUser(newUser);
-            insertedUser.password = '';
+            // insertedUser.password = '';
             req.session['currentUser'] = insertedUser;
             return res.json(insertedUser);
         }
@@ -42,7 +42,7 @@ export default class AuthenticationController {
     profile = (req, res) => {
         const profile = req.session['currentUser'];
         if (profile) {
-            profile.password = "";
+            // profile.password = "";
             res.json(profile);
         } else {
             res.sendStatus(403);

@@ -26,7 +26,7 @@ class AuthenticationController {
             else {
                 const insertedUser = yield AuthenticationController.userDao
                     .createUser(newUser);
-                insertedUser.password = '';
+                // insertedUser.password = '';
                 req.session['currentUser'] = insertedUser;
                 return res.json(insertedUser);
             }
@@ -34,7 +34,7 @@ class AuthenticationController {
         this.profile = (req, res) => {
             const profile = req.session['currentUser'];
             if (profile) {
-                profile.password = "";
+                // profile.password = "";
                 res.json(profile);
             }
             else {

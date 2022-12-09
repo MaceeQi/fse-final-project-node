@@ -69,7 +69,8 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(express_1.default.json()); // configuring our server so that it can parse json; json = format that data will be formatted as
 let sess = {
-    secret: process.env.REACT_APP_API_BASE,
+    // secret: process.env.REACT_APP_API_BASE,
+    secret: 'http://localhost:4000',
     cookie: {
         secure: false
     },
