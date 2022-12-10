@@ -98,6 +98,17 @@ class RestaurantDao {
             return RestaurantModel_1.default.find({ name: restaurant });
         });
     }
+    /**
+     * Uses RestaurantModel to delete restaurant documents from
+     * restaurants collection that matches given owner id
+     * @param {string} owner id of the restaurant owner
+     * @returns Promise To be notified when restaurants are deleted from the database
+     */
+    deleteRestaurantByOwner(owner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return RestaurantModel_1.default.deleteMany({ ownedBy: owner });
+        });
+    }
 }
 exports.default = RestaurantDao;
 RestaurantDao.restaurantDao = null;
