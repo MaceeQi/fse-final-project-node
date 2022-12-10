@@ -1,6 +1,22 @@
+/**
+ * @file Controller RESTful Web service API for authentication
+ */
 import UserDao from "../daos/UserDao";
 import {Express} from "express";
 
+/**
+ * @class AuthenticationController Implements RESTful Web service API for users resource
+ * Defines the following HTTP endpoints:
+ * <ul>
+ *     <li>POST /api/auth/signup to signup and create a new user instance</li>
+ *     <li>POST /api/auth/profile to create a new user profile</li>
+ *     <li>POST /api/auth/logout to logout a user from the current session</li>
+ *     <li>POST /api/auth/login to login an existing user</li>
+ * </ul>
+ * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
+ * @property {AuthenticationController} authenticationController Singleton controller implementing
+ * RESTful Web service API
+ */
 export default class AuthenticationController {
 
     private static userDao: UserDao = UserDao.getInstance();
@@ -23,6 +39,12 @@ export default class AuthenticationController {
 
     private constructor() {}
 
+    /**
+     * Signup and create a new user instance
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON arrays containing the user objects
+     */
     signup = async (req, res) => {
         const newUser = req.body;
         const existingUser = await AuthenticationController.userDao
@@ -39,6 +61,11 @@ export default class AuthenticationController {
         }
     }
 
+    /**
+     * Record a currently logged in user's info as the profile
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client
+     */
     profile = (req, res) => {
         const profile = req.session['currentUser'];
         if (profile) {
@@ -49,11 +76,21 @@ export default class AuthenticationController {
         }
     }
 
+    /**
+     * Logout a currently logged in user and destroy the session's info
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client
+     */
     logout = (req, res) => {
         req.session.destroy();
         res.sendStatus(200);
     }
 
+    /**
+     * Set an existing user as the logged-in user using the session
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client
+     */
     login = async (req, res) => {
         const user = req.body;
         const username = user.username;
