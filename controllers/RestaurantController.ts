@@ -46,6 +46,7 @@ export default class RestaurantController implements RestaurantControllerI {
             app.delete('/api/restaurants/name/:name/delete',
                 RestaurantController.restaurantController.deleteRestaurantsByRestaurantName);
             app.get('/api/restaurants/name/:name', RestaurantController.restaurantController.findRestaurantsByName);
+            app.delete('/api/restaurants/users/:uid', RestaurantController.restaurantController.deleteRestaurantByOwner);
         }
         return RestaurantController.restaurantController;
     }
@@ -138,4 +139,13 @@ export default class RestaurantController implements RestaurantControllerI {
         RestaurantController.restaurantDao.findRestaurantsByName(req.params.name)
             .then(restaurants => res.json(restaurants));
 
+    /**
+     * Deletes restaurant documents fromrestaurants collection that matches given owner id
+     * @param {req} req Represents request from client, including path
+     * parameter name identifying the owner id
+     * @param {res} res Represents response to client
+     */
+    deleteRestaurantByOwner = (req, res) =>
+        RestaurantController.restaurantDao.deleteRestaurantByOwner(req.params.uid)
+            .then(result => res.json(result));
 }

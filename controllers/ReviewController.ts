@@ -59,7 +59,6 @@ export default class ReviewController implements ReviewControllerI {
             .createReview(req.params.criticid, req.params.restaurantid, req.body)
             .then(review => {
                 res.json(review);
-                console.log(review);
             });
 
     /**

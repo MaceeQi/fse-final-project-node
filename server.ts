@@ -28,8 +28,12 @@ import RestaurantController from "./controllers/RestaurantController";
 import UpdateController from "./controllers/UpdateController";
 import FeaturedItemController from "./controllers/FeaturedItemController";
 import HourController from "./controllers/HourController";
+import AuthenticationController from "./controllers/AuthenticationController";
+
+const session = require("express-session");
 
 var cors = require('cors');
+
 const app = express();  // express is a library  that allows you to create HTTP servers
 // app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
 const corsConfig = {
@@ -41,6 +45,24 @@ const corsConfig = {
 app.use(cors(corsConfig));
 
 app.use(express.json());        // configuring our server so that it can parse json; json = format that data will be formatted as
+
+let sess = {
+    // secret: process.env.REACT_APP_API_BASE,
+    secret: 'http://localhost:4000',
+    cookie: {
+        secure: false
+    },
+    resave: false,
+    saveUninitialized: true
+}
+
+if (process.env.ENV === 'PRODUCTION') {
+    app.set('trust proxy', 1)
+    sess.cookie.secure = true
+}
+
+app.use(session(sess));
+
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -66,6 +88,7 @@ const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${
 // mongoose.connect("mongodb+srv://restaurants:fseteam6@cluster0.wxmcfmp.mongodb.net/tuiter?retryWrites=true&w=majority")'
 mongoose.connect(connectionString, options);
 
+
 function sayHello(req: Request, res: Response) {
     res.send('Welcome to Foundation of Software Engineering!');
 }
@@ -89,7 +112,7 @@ const restaurantController = RestaurantController.getInstance(app);
 const updateController = UpdateController.getInstance(app);
 const featuredItemController = FeaturedItemController.getInstance(app);
 const hourController = HourController.getInstance(app);
-
+const authenticationController = AuthenticationController.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.
