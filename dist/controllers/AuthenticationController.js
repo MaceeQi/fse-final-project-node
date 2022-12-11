@@ -12,9 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @file Controller RESTful Web service API for authentication
+ */
 const UserDao_1 = __importDefault(require("../daos/UserDao"));
+/**
+ * @class AuthenticationController Implements RESTful Web service API for users resource
+ * Defines the following HTTP endpoints:
+ * <ul>
+ *     <li>POST /api/auth/signup to signup and create a new user instance</li>
+ *     <li>POST /api/auth/profile to create a new user profile</li>
+ *     <li>POST /api/auth/logout to logout a user from the current session</li>
+ *     <li>POST /api/auth/login to login an existing user</li>
+ * </ul>
+ * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
+ * @property {AuthenticationController} authenticationController Singleton controller implementing
+ * RESTful Web service API
+ */
 class AuthenticationController {
     constructor() {
+        /**
+         * Signup and create a new user instance
+         * @param {Request} req Represents request from client
+         * @param {Response} res Represents response to client, including the
+         * body formatted as JSON arrays containing the user objects
+         */
         this.signup = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const newUser = req.body;
             const existingUser = yield AuthenticationController.userDao
@@ -31,6 +53,11 @@ class AuthenticationController {
                 return res.json(insertedUser);
             }
         });
+        /**
+         * Record a currently logged in user's info as the profile
+         * @param {Request} req Represents request from client
+         * @param {Response} res Represents response to client
+         */
         this.profile = (req, res) => {
             const profile = req.session['currentUser'];
             if (profile) {
@@ -41,10 +68,20 @@ class AuthenticationController {
                 res.sendStatus(403);
             }
         };
+        /**
+         * Logout a currently logged in user and destroy the session's info
+         * @param {Request} req Represents request from client
+         * @param {Response} res Represents response to client
+         */
         this.logout = (req, res) => {
             req.session.destroy();
             res.sendStatus(200);
         };
+        /**
+         * Set an existing user as the logged-in user using the session
+         * @param {Request} req Represents request from client
+         * @param {Response} res Represents response to client
+         */
         this.login = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const user = req.body;
             const username = user.username;
