@@ -37,7 +37,7 @@ var cors = require('cors');
 const app = express();  // express is a library  that allows you to create HTTP servers
 // app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
 const corsConfig = {
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://team6-tuiter-restaurants-fse.netlify.app'],
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
     credentials: true,
     optionSuccessStatus: 200,
