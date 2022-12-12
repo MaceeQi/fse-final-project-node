@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *     <li>follows</li>
  *     <li>bookmarks</li>
  *     <li>messages</li>
+ *     <li>reviews</li>
  * </ul>
  *
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
@@ -49,10 +50,38 @@ const LikeController_1 = __importDefault(require("./controllers/LikeController")
 const FollowController_1 = __importDefault(require("./controllers/FollowController"));
 const BookmarkController_1 = __importDefault(require("./controllers/BookmarkController"));
 const MessageController_1 = __importDefault(require("./controllers/MessageController"));
+const ReviewController_1 = __importDefault(require("./controllers/ReviewController"));
+const RestaurantController_1 = __importDefault(require("./controllers/RestaurantController"));
+const UpdateController_1 = __importDefault(require("./controllers/UpdateController"));
+const FeaturedItemController_1 = __importDefault(require("./controllers/FeaturedItemController"));
+const HourController_1 = __importDefault(require("./controllers/HourController"));
+const AuthenticationController_1 = __importDefault(require("./controllers/AuthenticationController"));
+const session = require("express-session");
 var cors = require('cors');
 const app = (0, express_1.default)(); // express is a library  that allows you to create HTTP servers
-app.use(cors()); // cors is tech that allows you to have people outside your domain to connect safely to your server
+// app.use(cors());        // cors is tech that allows you to have people outside your domain to connect safely to your server
+const corsConfig = {
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsConfig));
 app.use(express_1.default.json()); // configuring our server so that it can parse json; json = format that data will be formatted as
+let sess = {
+    // secret: process.env.REACT_APP_API_BASE,
+    secret: 'http://localhost:4000',
+    cookie: {
+        secure: false
+    },
+    resave: false,
+    saveUninitialized: true
+};
+if (process.env.ENV === 'PRODUCTION') {
+    app.set('trust proxy', 1);
+    sess.cookie.secure = true;
+}
+app.use(session(sess));
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -63,17 +92,17 @@ const options = {
     family: 4
 };
 //mongoose.connect('mongodb://localhost:27017/tuiter', options);   // connect to mongo compass - local tuiter database
-//mongoose.connect('mongodb+srv://fse_tuiter:m7RwBEdMZHSqPs0k@cluster0.3ivwj4w.mongodb.net/tuiter?retryWrites=true&w=majority',
-//options);
+require('dotenv').config();
 // build the connection string
 const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = "fse_tuiter";
-const DB_PASSWORD = "m7RwBEdMZHSqPs0k";
-const HOST = "cluster0.3ivwj4w.mongodb.net";
+const DB_USERNAME = "restaurants";
+const DB_PASSWORD = "fseteam6";
+const HOST = "cluster0.wxmcfmp.mongodb.net";
 const DB_NAME = "tuiter";
 const DB_QUERY = "retryWrites=true&w=majority";
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
 // connect to the database
+// mongoose.connect("mongodb+srv://restaurants:fseteam6@cluster0.wxmcfmp.mongodb.net/tuiter?retryWrites=true&w=majority")'
 mongoose.connect(connectionString, options);
 function sayHello(req, res) {
     res.send('Welcome to Foundation of Software Engineering!');
@@ -89,6 +118,12 @@ const likeController = LikeController_1.default.getInstance(app);
 const followController = FollowController_1.default.getInstance(app);
 const bookmarkController = BookmarkController_1.default.getInstance(app);
 const messageController = MessageController_1.default.getInstance(app);
+const reviewController = ReviewController_1.default.getInstance(app);
+const restaurantController = RestaurantController_1.default.getInstance(app);
+const updateController = UpdateController_1.default.getInstance(app);
+const featuredItemController = FeaturedItemController_1.default.getInstance(app);
+const hourController = HourController_1.default.getInstance(app);
+const authenticationController = AuthenticationController_1.default.getInstance(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on AWS if available.
